@@ -1,0 +1,27 @@
+{
+  "name": "ng-synaps-pics",
+  "version": "1.0.0",
+  "description": "Synaps.pics bindings for AngularJS",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synapshq/ng-synaps-pics.git"
+  },
+  "keywords": [
+    "angularjs",
+    "synaps.pics",
+    "imaging"
+  ],
+  "author": "Synaps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/synapshq/ng-synaps-pics/issues"
+  },
+  "homepage": "https://github.com/synapshq/ng-synaps-pics#readme",
+  "peerDependencies": {
+    "angular":"^1.5.0"
+  }
+}
