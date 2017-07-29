@@ -19,12 +19,18 @@ var directive = function (SynapsPics) {
         }
       }
 
+      var getLocation = function(href) {
+        var l = document.createElement("a");
+        l.href = href;
+        return l;
+      };
+
       scope.$watch('image', function (image) {
         var placeholderUrl = SynapsPics.getPlaceholderUrl(attrs.width, attrs.height, ('retina' in attrs) ? 2 : 1);
 
         if (image) {
           var imageUrl = SynapsPics.getImageUrl({
-            path: image,
+            path: getLocation(image).pathname,
             width: attrs.width,
             height: attrs.height,
             retina: ('retina' in attrs),
