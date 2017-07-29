@@ -5,7 +5,6 @@ var directive = function (SynapsPics) {
       image: '<synapsPics'
     },
     link: function (scope, element, attrs, modalCtrl) {
-
       function setImage(imageUrl) {
         var targetAttr = 'src';
 
@@ -29,7 +28,8 @@ var directive = function (SynapsPics) {
             width: attrs.width,
             height: attrs.height,
             retina: ('retina' in attrs),
-            crop: attrs.crop || 'fill'
+            crop: attrs.crop || 'fill',
+            bg: attrs.bg
           });
 
           setImage(imageUrl);

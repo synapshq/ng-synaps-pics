@@ -2,8 +2,9 @@
   "name": "ng-synaps-pics",
   "version": "1.0.0",
   "description": "Synaps.pics bindings for AngularJS",
-  "main": "src/index.js",
+  "main": "dist/ng-synaps-pics.min.js",
   "scripts": {
+    "build": "rimraf dist && PROD=1 webpack --bail --progress --profile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +22,11 @@
     "url": "https://github.com/synapshq/ng-synaps-pics/issues"
   },
   "homepage": "https://github.com/synapshq/ng-synaps-pics#readme",
-  "peerDependencies": {
-    "angular":"^1.5.0"
+  "dependencies": {
+    "angular": "^1.5.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.2.0",
+    "rimraf": "^2.6.1"
   }
 }

@@ -41,6 +41,10 @@ var factory = function (SynapsPicsConfig) {
         params.push('c_' + options.crop);
       }
 
+      if (options.bg) {
+        params.push('b_rgb:' + options.bg);
+      }
+
       var pathParts = options.path.split('/');
       var fileName = pathParts.pop();
       var realPath = pathParts.join('/');
