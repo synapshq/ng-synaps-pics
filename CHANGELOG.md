@@ -1,3 +1,9 @@
+## 1.0.2 (2017-07-30)
+
+### Fixes
+
+- ImageUrl that startswith a slash now also works.
+
 ## 1.0.1 (2017-07-30)
 
 ### Features

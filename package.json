@@ -1,6 +1,6 @@
 {
   "name": "ng-synaps-pics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Synaps.pics bindings for AngularJS",
   "main": "dist/ng-synaps-pics.min.js",
   "scripts": {

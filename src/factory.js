@@ -45,7 +45,7 @@ var factory = function (SynapsPicsConfig) {
         params.push('b_rgb:' + options.bg);
       }
 
-      var pathParts = options.path.split('/');
+      var pathParts = options.path.replace(/^\/+|\/+$/, '').split('/');
       var fileName = pathParts.pop();
       var realPath = pathParts.join('/');
 
