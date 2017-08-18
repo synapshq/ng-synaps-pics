@@ -1,3 +1,10 @@
+## 1.0.2 (2017-08-18)
+
+### Features
+
+- `as-attr` attribute added
+- `width` and `height` can have dynamic value now
+
 ## 1.0.2 (2017-07-30)
 
 ### Fixes
