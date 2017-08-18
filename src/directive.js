@@ -2,14 +2,20 @@ var directive = function (SynapsPics) {
   return {
     restrict: 'A',
     scope: {
-      image: '<synapsPics'
-    },
+      image: '<synapsPics',
+      width: '<',
+      height: '<'
+  },
     link: function (scope, element, attrs, modalCtrl) {
       function setImage(imageUrl) {
         var targetAttr = 'src';
 
         if ('asLink' in attrs) {
           targetAttr = 'href';
+        }
+
+        if ('asAttr' in attrs) {
+          targetAttr = attrs.asAttr;
         }
 
         if ('asBackground' in attrs) {
@@ -26,13 +32,13 @@ var directive = function (SynapsPics) {
       };
 
       scope.$watch('image', function (image) {
-        var placeholderUrl = SynapsPics.getPlaceholderUrl(attrs.width, attrs.height, ('retina' in attrs) ? 2 : 1);
+        var placeholderUrl = SynapsPics.getPlaceholderUrl(scope.width, scope.height, ('retina' in attrs) ? 2 : 1);
 
         if (image) {
           var imageUrl = SynapsPics.getImageUrl({
             path: getLocation(image).pathname,
-            width: attrs.width,
-            height: attrs.height,
+            width: scope.width,
+            height: scope.height,
             retina: ('retina' in attrs),
             crop: attrs.crop || 'fill',
             bg: attrs.bg

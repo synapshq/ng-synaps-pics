@@ -18,8 +18,6 @@ var factory = function (SynapsPicsConfig) {
 
   return {
     /**
-     * Represents a book.
-     * @constructor
      * @param {Object} options - Image options
      * @param {string} options.path - Path of image
      * @param {number} [options.width] - Width of resized image
