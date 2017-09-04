@@ -7,6 +7,9 @@ var directive = function (SynapsPics) {
       height: '<'
   },
     link: function (scope, element, attrs, modalCtrl) {
+      var srcsetSupported = 'srcset' in document.createElement('img');
+      var lazy = 'lazy' in attrs;
+
       function setImage(imageUrl) {
         var targetAttr = 'src';
 
@@ -18,10 +21,27 @@ var directive = function (SynapsPics) {
           targetAttr = attrs.asAttr;
         }
 
-        if ('asBackground' in attrs) {
-          element.css('background-image', 'url(' + imageUrl + ')');
+        var showImage = function () {
+          if ('asBackground' in attrs) {
+            element.css('background-image', 'url(' + imageUrl + ')');
+          } else {
+            element.attr(targetAttr, imageUrl);
+          }
+        };
+
+        if (lazy) {
+          if (checkInViewport()) {
+            showImage();
+          } else {
+            angular.element(window).on('scroll resize', function () {
+              if (checkInViewport()) {
+                angular.element(window).off('scroll resize', this);
+                showImage();
+              }
+            });
+          }
         } else {
-          element.attr(targetAttr, imageUrl);
+          showImage();
         }
       }
 
@@ -34,6 +54,11 @@ var directive = function (SynapsPics) {
       scope.$watch('image', function (image) {
         var placeholderUrl = SynapsPics.getPlaceholderUrl(scope.width, scope.height, ('retina' in attrs) ? 2 : 1);
 
+        element.on('error', function () {
+          element.off('error');
+          setImage(placeholderUrl);
+        });
+
         if (image) {
           var imageUrl = SynapsPics.getImageUrl({
             path: getLocation(image).pathname,
@@ -45,14 +70,22 @@ var directive = function (SynapsPics) {
           });
 
           setImage(imageUrl);
-
-          element.on('error', function () {
-            setImage(placeholderUrl);
-          })
         } else {
           setImage(placeholderUrl);
         }
-      })
+      });
+
+      var checkInViewport = function () {
+        var el = element[0];
+        var lazyDistance = ~~(attrs.lazy);
+
+        var elemTop = el.getBoundingClientRect().top;
+        var elemBottom = el.getBoundingClientRect().bottom;
+
+        var isVisible = (elemTop >= document.body.scrollTop - lazyDistance) && (elemBottom <= window.innerHeight);
+        return isVisible;
+      };
+
     }
   };
 };

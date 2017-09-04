@@ -16,7 +16,13 @@ npm install --save ng-synaps-pics
 ```
 
 ```html
-<div class="hero" synaps-pics="$ctrl.imageUrl" height="400" retina as-background>
+<div class="hero" synaps-pics="$ctrl.imageUrl" height="400" retina as-background >
+```
+
+Lazy loading
+
+```html
+<img synaps-pics="$ctrl.imageUrl" width="300" height="200" lazy>
 ```
 
 ### Attributes
