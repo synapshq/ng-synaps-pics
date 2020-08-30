@@ -23,9 +23,13 @@ var directive = function (SynapsPics) {
 
         var showImage = function () {
           if ('asBackground' in attrs) {
-            element.css('background-image', 'url(' + imageUrl + ')');
+            if (element.css('background-image') != 'url(' + imageUrl + ')') {
+              element.css('background-image', 'url(' + imageUrl + ')');
+            }
           } else {
-            element.attr(targetAttr, imageUrl);
+            if (element.attr(targetAttr) != imageUrl) {
+              element.attr(targetAttr, imageUrl);
+            }
           }
         };
 
